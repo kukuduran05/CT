@@ -1,3 +1,9 @@
+// Imports
+const conf  = require('dotenv');
+
+// Initialize configuration
+conf.config();
+
 /**
  * Required External Modules
  */

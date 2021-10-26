@@ -1,4 +1,4 @@
-# CT
+# Project Description
 ### Overview ###
 Create a log parser that can:
  - Read an access log file
