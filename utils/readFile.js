@@ -30,8 +30,9 @@ const readFile =  async function(url) {
             method = method.substring(1, method.length);
 		    userAgent = userAgent.join('');	// here you need to parse if it's a mobile or desktop, should be easily done by usiing regex ! 
             let country = countryService(ip);
-            console.log(ip);
             console.log(country);
+            // console.log(ip);
+            // console.log(country);
             // dataCSV.push({ip, country});
         })
         // console.log(dataCSV);
