@@ -18,6 +18,7 @@ async function main (file) {
     // Read file for get line by line
     await readFile(file);
     // const res = await readFile(file);
+
     // console.log(res);
     // await createCSV(res);
 }
