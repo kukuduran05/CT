@@ -1,35 +1,10 @@
 // Imports
-const conf  = require('dotenv');
+const minimist = require('minimist');
+const validatePath = require('./utils/validatePath');
 
-// Initialize configuration
-conf.config();
+// Read argv from path
+const argv = minimist(process.argv.slice(2));
+const { f:file } = argv;
 
-/**
- * Required External Modules
- */
-const express = require("express");
-
-
-/**
- * App Variables
- */
-const app = express();
-const port = process.env.PORT || "8000";
-/**
- *  App Configuration
- */
-
-/**
- * Routes Definitions
- */
-app.get("/", (req, res) => {
-    res.status(200).send("Now is running!");
-});
-
-/**
- * Server Activation
- */
-
-app.listen(port, () => {
-    console.log(`Listening to requests on http://localhost:${port}`);
-});
+//Validate if path exists
+validatePath(file);

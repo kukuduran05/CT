@@ -9,7 +9,6 @@ Create a log parser that can:
 The goal of this test is to showcase your ability to leverage existing libraries without writing an exhaustive amount of code. Reach out to us if you need additional direction.
 
 Below is a sample access log you can use if you don't have one.
-
 https://cti-developer-dropbox.s3.amazonaws.com/gobankingrates.com.access.log
  
 ### Requirements ###
@@ -22,3 +21,10 @@ https://cti-developer-dropbox.s3.amazonaws.com/gobankingrates.com.access.log
 ### Bonus ###
  - Do this all with Docker
  - Unit Test
+
+# For Run the project
+Command: npm run parse -- -f gobankingrates.com.access.log
+Where: -f is the flag for the file and gobankingrates.com.access.log is the file path
+
+# You need to create an account in https://www.maxmind.com/
+You need to generate a licence key in the module of Manage of licence keys and replace the userID and licenceKey into the .env file.
