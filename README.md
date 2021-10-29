@@ -28,17 +28,17 @@ You can download my code from
 # For Run the project #
 ### With CLI ###
 Command: 
-    - npm run parse -- -f gobankingrates.com.access.log
+- npm run parse -- -f gobankingrates.com.access.log
 Where: 
-    - -f is the flag for the file and gobankingrates.com.access.log is the file path
+- -f is the flag for the file and gobankingrates.com.access.log is the file path
 ### With docker ###
 Commands:
     # Create the image
-    - docker build . -t image-name 
+- docker build . -t image-name 
     # Show images list
-    - docker images
+- docker images
     # Run the container
-    - docker run -it --name container-name -p 49160:8080 -d image-name
+- docker run -it --name container-name -p 49160:8080 -d image-name
     # For show the CSV
-    - docker cp container-name:/out.csv ./
+- docker cp container-name:/out.csv ./
 
