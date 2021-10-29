@@ -26,12 +26,12 @@ https://cti-developer-dropbox.s3.amazonaws.com/gobankingrates.com.access.log
 You can download my code from 
 
 # For Run the project #
-### With CLI ###
+## With CLI ##
 ### Command: ###
 - npm run parse -- -f gobankingrates.com.access.log
 ### Where: ###
 - -f is the flag for the file and gobankingrates.com.access.log is the file path
-### With docker ###
+## With docker ##
 ### Commands: ###
 ### Create the image ###
 - docker build . -t image-name 
