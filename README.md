@@ -23,7 +23,7 @@ https://cti-developer-dropbox.s3.amazonaws.com/gobankingrates.com.access.log
  - Unit Test
 
 ### Get the project ###
-You can download my code from 
+You can download my code from https://github.com/kukuduran05/CT.git
 
 # For Run the project #
 ## With CLI ##
