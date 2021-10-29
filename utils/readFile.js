@@ -1,49 +1,106 @@
-const fs = require('fs');
-const readline = require('readline');
-const stream = require('stream');
-const countryService = require('./countryService');
-const cityService = require('./cityService');
+// Import libraries
+const fs = require("fs");
+const stream = require("stream");
+const readline = require("readline");
+const UAParser = require("ua-parser-js");
 
+// Import custom services or functions
+const countryService = require("./countryService");
+const cityService = require("./cityService");
+const createCSV = require("./createCSV");;
 
-const readFile =  async function(url) {
-    // console.clear();
-    try {
-        var dataCSV = [];
-        var instream = fs.createReadStream(url, 'utf-8');
-        var outstream = new stream();
-        var rl = readline.createInterface(instream, outstream);
-        rl.on('line', function(line){
-            let [ ip, i1, i2, ts, tz, method, resource, protocol, statusCode, size, referer, ...userAgent] = line.split(' ');
-            statusCode = +statusCode; // status code should be in number type
-            size = +size;
-            // ts are wrapped in [ ] , we just remove those
-            if(ts){
-                ts = ts.replace(/\[|\]/,''); // using regex to replace square brackets
-            }
-            // tz also is wrapped between [], again replace, but using another method instead of regex
-            if(tz){
-                tz = tz.substring(0, tz.length -1); // remove [ ]
-            }
-            const time = ts + tz; // concat time and timezone
-            protocol = protocol.substring(0, protocol.length -1);
-            method = method.substring(1, method.length);
-		    userAgent = userAgent.join('');	// here you need to parse if it's a mobile or desktop, should be easily done by usiing regex ! 
-            let country = countryService(ip);
-            let city = cityService(ip);
-            // dataCSV.push({ip, country, city});
-            dataCSV.push(ip);
-        });
-        console.log(dataCSV);
-        // return dataCSV;
-    
-		//     // dataCSV.push({ ip, time, method, resource, protocol, statusCode, size, referer, userAgent }); // store the result in an array 
-        //     dataCSV.push({ip, country});
-        // }
-        // // console.log(dataCSV);
-        // return dataCSV;
-    } catch (err) {
-        console.error(err)
+const readFile = function (file) {
+  // Data is declared for save the information to export in CSV
+  const data = [];
+  const instream = fs.createReadStream(file, "utf-8");
+  const outstream = new stream();
+  const rl = readline.createInterface(instream, outstream);
+  // Get Country and City from IP
+  const countryServiceReader = countryService();
+  const cityServiceReader = cityService();
+
+  // Read line by line
+  rl.on("line", function (line) {
+    // Get properties from line
+    let [
+      ip,
+      i1,
+      i2,
+      ts,
+      tz,
+      method,
+      resource,
+      protocol,
+      statusCode,
+      size,
+      referer,
+      ...userAgent
+    ] = line.split(" ");
+    // Status code should be in number type
+    statusCode = +statusCode;
+    size = +size;
+    // ts are wrapped in [ ] , we just remove those
+    if (ts) {
+      // Using regex to replace square brackets
+      ts = ts.replace(/\[|\]/, "");
     }
-}
+    // tz also is wrapped between [], again replace, but using another method instead of regex
+    if (tz) {
+      tz = tz.substring(0, tz.length - 1); // remove [ ]
+    }
+    // Concat time and timezone
+    const time = ts + tz;
+    protocol = protocol.substring(0, protocol.length - 1);
+    method = method.substring(1, method.length);
+    // Get Country from IP
+    let country = countryServiceReader.country(ip);
+    country.country === undefined
+      ? (country = "")
+      : (country = country.country.isoCode);
+    // Get City from IP
+    let city = cityServiceReader.city(ip);
+    city.city === undefined
+      ? (city = "")
+      : city.city.names === undefined
+      ? (city = "")
+      : (city = city.city.names.en);
+    // User Agent information, I used ua-parser-js library for get information about User Agent
+    var parser = new UAParser();
+    userAgent = userAgent.join("");
+    parser.setUA(userAgent);
+    var UA = parser.getResult();
+    var deviceType = UA.device.type;
+    deviceType === undefined
+      ? (deviceType = "")
+      : (deviceType = UA.device.type);
+    var browser = UA.browser.name;
+    browser === undefined ? (browser = "") : (browser = UA.browser.name);
+    // Properties are added to data array
+    data.push({
+      ip,
+      statusCode,
+      size,
+      time,
+      protocol,
+      method,
+      resource,
+      country,
+      city,
+      referer,
+      userAgent,
+      deviceType,
+      browser,
+    });
+  })
+    .on("close", function () {
+      // console.log('FILE ENDED', data);
+      // Export data to CSV
+      createCSV(data);
+    })
+    .on("error", function (err) {
+      // In error case
+      console.log(err.message);
+    });
+};
 
 module.exports = readFile;

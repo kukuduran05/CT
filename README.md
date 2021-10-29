@@ -25,6 +25,3 @@ https://cti-developer-dropbox.s3.amazonaws.com/gobankingrates.com.access.log
 # For Run the project
 Command: npm run parse -- -f gobankingrates.com.access.log
 Where: -f is the flag for the file and gobankingrates.com.access.log is the file path
-
-# You need to create an account in https://www.maxmind.com/
-You need to generate a licence key in the module of Manage of licence keys and replace the userID and licenceKey into the .env file.

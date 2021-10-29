@@ -1,10 +1,20 @@
-// Imports
-const minimist = require('minimist');
-const validatePath = require('./utils/validatePath');
+// Import libraries
+const fs = require("fs");
+const minimist = require("minimist");
 
-// Read argv from path
+// Import custom services or functions
+const readFile = require("./utils/readFile");
+
+// Get args from the path
 const argv = minimist(process.argv.slice(2));
-const { f:file } = argv;
+const { f: file } = argv;
 
-//Validate if path exists
-validatePath(file);
+async function main() {
+  // Validate if file exists
+  if (!fs.existsSync(file))
+    throw new Error(`Invalid Path or File doesn't exist`);
+  // Read the log file
+  readFile(file);
+}
+
+main();
