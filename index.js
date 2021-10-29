@@ -8,6 +8,7 @@ const readFile = require("./utils/readFile");
 // Get args from the path
 const argv = minimist(process.argv.slice(2));
 const { f: file } = argv;
+// console.log(argv);
 
 async function main() {
   // Validate if file exists

@@ -22,6 +22,18 @@ https://cti-developer-dropbox.s3.amazonaws.com/gobankingrates.com.access.log
  - Do this all with Docker
  - Unit Test
 
-# For Run the project
+# For Run the project #
+### With CLI ###
 Command: npm run parse -- -f gobankingrates.com.access.log
 Where: -f is the flag for the file and gobankingrates.com.access.log is the file path
+### With docker ###
+Commands:
+    # Create the image
+    - docker build . -t image-name 
+    # Show images list
+    - docker images
+    # Run the container
+    - docker run -it --name container-name -p 49160:8080 -d image-name
+    # For show the CSV
+    - docker cp container-name:/out.csv ./
+

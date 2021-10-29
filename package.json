@@ -4,8 +4,7 @@
   "description": "Read log file and export to CSV",
   "main": "index.js",
   "scripts": {
-    "parse": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "parse": "node index.js"
   },
   "author": "Karla Solis",
   "license": "ISC",
