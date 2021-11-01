@@ -1,7 +1,7 @@
 const fs = require("fs");
 const Reader = require('@maxmind/geoip2-node').Reader;
 
-const countryService = function() {
+const countryService = () => {
     try {
         const dbBuffer = fs.readFileSync('./dbs/GeoLite2-Country.mmdb');
         const reader = Reader.openBuffer(dbBuffer);

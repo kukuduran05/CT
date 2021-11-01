@@ -65,15 +65,15 @@ const readFile = function (file) {
       ? (city = "")
       : (city = city.city.names.en);
     // User Agent information, I used ua-parser-js library for get information about User Agent
-    var parser = new UAParser();
+    let parser = new UAParser();
     userAgent = userAgent.join("");
     parser.setUA(userAgent);
-    var UA = parser.getResult();
-    var deviceType = UA.device.type;
+    const UA = parser.getResult();
+    let deviceType = UA.device.type;
     deviceType === undefined
       ? (deviceType = "")
       : (deviceType = UA.device.type);
-    var browser = UA.browser.name;
+    let browser = UA.browser.name;
     browser === undefined ? (browser = "") : (browser = UA.browser.name);
     // Properties are added to data array
     data.push({
@@ -93,7 +93,6 @@ const readFile = function (file) {
     });
   })
     .on("close", function () {
-      // console.log('FILE ENDED', data);
       // Export data to CSV
       createCSV(data);
     })

@@ -1,6 +1,6 @@
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 
-const createCSV = async function(data) {
+const createCSV = async (data) => {
     const csvWriter = createCsvWriter({
         path: 'out.csv',
         header: [
@@ -20,9 +20,8 @@ const createCSV = async function(data) {
         ]
     });
 
-    csvWriter
-    .writeRecords(data)
-    .then(()=> console.log('The CSV file was written successfully'));
+    await csvWriter.writeRecords(data)
+    console.log('The CSV file was written successfully');
 }
 
 module.exports = createCSV;

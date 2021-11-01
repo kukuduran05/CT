@@ -4,7 +4,8 @@
   "description": "Read log file and export to CSV",
   "main": "index.js",
   "scripts": {
-    "parse": "node index.js"
+    "parse": "node index.js",
+    "test": "jest"
   },
   "author": "Karla Solis",
   "license": "ISC",
@@ -13,5 +14,8 @@
     "csv-writer": "^1.6.0",
     "minimist": "^1.2.5",
     "ua-parser-js": "^1.0.2"
+  },
+  "devDependencies": {
+    "jest": "^27.3.1"
   }
 }
