@@ -34,20 +34,18 @@ npm install
 
 ## Run the project
 For Run the project with CLI:
-## Command:
+Command:
 ```sh
 npm run parse -- -f gobankingrates.com.access.log
 ```
-- 
-## Where:
+Where:
 | Flag | Description |
 | ------ | ------ |
 | -f | Is the flag for the file |
 | gobankingrates.com.access.log | Is the file path |
 
 For Run the project with Docker:
-## Commands:
-Create the image
+Commands:
 ```sh
 docker build . -t image-name
 docker images
