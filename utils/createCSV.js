@@ -1,10 +1,8 @@
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 
-const createCSV = async (data, output_name_file) => {
-    let name_file = '';
-    (output_name_file == undefined) ? name_file = 'output.csv' : name_file = output_name_file+'.csv';
+const createCSV = async (data) => {
     const csvWriter = createCsvWriter({
-        path: name_file,
+        path: 'output.csv',
         header: [
           {id: 'ip', title: 'IP Address'},
           {id: 'city', title: 'City'},

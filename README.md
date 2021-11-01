@@ -38,17 +38,11 @@ For Run the project with CLI:
 ```sh
 npm run parse -- -f gobankingrates.com.access.log
 ```
-or:
-```sh
-npm run parse -- -f gobankingrates.com.access.log --onf output_name_file
-```
 Where:
 | Flag | Description |
 | ------ | ------ |
 | -f | Is the flag for the file |
 | gobankingrates.com.access.log | Is the file path |
-| --onf | The flag for the output name file |
-| output_name_file | The name of the output file |
 
 For Run the project with Docker:
 - Commands:
@@ -56,5 +50,5 @@ For Run the project with Docker:
 docker build . -t image-name
 docker images
 docker run -it --name container-name -p 49160:8080 -d image-name
-docker cp container-name:/output_name_file.csv ./
+docker cp container-name:/output.csv ./
 ```
