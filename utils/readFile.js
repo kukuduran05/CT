@@ -9,7 +9,7 @@ const countryService = require("./countryService");
 const cityService = require("./cityService");
 const createCSV = require("./createCSV");;
 
-const readFile = function (file) {
+const readFile = function (file, output_name_file) {
   // Data is declared for save the information to export in CSV
   const data = [];
   const instream = fs.createReadStream(file, "utf-8");
@@ -94,7 +94,7 @@ const readFile = function (file) {
   })
     .on("close", function () {
       // Export data to CSV
-      createCSV(data);
+      createCSV(data, output_name_file);
     })
     .on("error", function (err) {
       // In error case
