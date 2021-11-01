@@ -52,3 +52,9 @@ docker images
 docker run -it --name container-name -p 49160:8080 -d image-name
 docker cp container-name:/output.csv ./
 ```
+Where:
+| Flag | Description |
+| ------ | ------ |
+| image-name | The name of the image |
+| container-name | The name of the container |
+| output.csv | The name of the CSV file |
