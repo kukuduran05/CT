@@ -47,7 +47,8 @@ Where:
 | ------ | ------ |
 | -f | Is the flag for the file |
 | gobankingrates.com.access.log | Is the file path |
-| --onf | The name of the output file |
+| --onf | The flag for the output name file |
+| output_name_file | The name of the output file |
 
 For Run the project with Docker:
 - Commands:
